@@ -4,14 +4,19 @@
 这个扩展可以在导入 PSD 文件的同时自动识别画板并裁切为对应宽高的合成。
 
 ![操作演示](https://raw.githubusercontent.com/bigxixi/PSDImporter/master/assets/intro.gif)  
-
-操作演示  
+  
+或者观看视频演示  
+https://www.bilibili.com/video/BV1RY411E78T/
 
  ## 如何安装
 1. 下载 `PSDImporter.zxp` 文件，[`在这里右键 - 链接另存为`](https://raw.githubusercontent.com/bigxixi/PSDImporter/master/PSDImporter.zxp).</br>
 2. 根据自己的操作系统下载 ZXP 安装工具：  
 https://aescripts.com/learn/zxp-installer/  
 然后将 `PSDImporter.zxp` 拖进安装工具（或者通过 File -> Open 选择该文件安装）  
+
+百度网盘备份：  
+链接: https://pan.baidu.com/s/111bLf2yfqFirlWdiD23AYg
+提取码: i3id
 
  ## 使用步骤：
 1、在「窗口」-「扩展」中运行「PSDImporter」。  
