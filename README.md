@@ -18,8 +18,8 @@ https://aescripts.com/learn/zxp-installer/
 2、点击「点击打开PSD文件」，并打开需要导入的 PSD 文件。  
 3、Enjoy。
 
- ## 关于这个扩展
- 利用[PSD.js](https://raw.githubusercontent.com/bigxixi/PSDImporter/master/assets/intro.gif) 读取画板的宽高、坐标数据，然后通过脚本导入对应文件并计算和裁切对应合成。详情可以看下代码的实现。
+ ## 制作思路
+ 利用 [PSD.js](https://raw.githubusercontent.com/bigxixi/PSDImporter/master/assets/intro.gif) 读取画板的宽高、坐标数据，然后通过 AE 脚本导入对应的 PSD 文件并计算和裁切对应合成，感兴趣可以看下代码的实现。
 
  ## Donation - 求打赏:
 如果您觉得本插件好用，欢迎打赏，感谢您的支持！  
