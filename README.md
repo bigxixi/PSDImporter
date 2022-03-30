@@ -24,7 +24,7 @@ https://aescripts.com/learn/zxp-installer/
 3、Enjoy。
 
  ## 制作思路
- 利用 [PSD.js](https://raw.githubusercontent.com/bigxixi/PSDImporter/master/assets/intro.gif) 读取画板的宽高、坐标数据，然后通过 AE 脚本导入对应的 PSD 文件并计算和裁切对应合成，感兴趣可以看下代码的实现。
+ 利用 [PSD.js](https://raw.githubusercontent.com/bigxixi/PSDImporter/master/assets/intro.gif) 读取画板的宽高、坐标数据，然后通过 AE 脚本导入对应的 PSD 文件并计算和裁切对应合成，感兴趣可以看下[代码的实现](https://github.com/bigxixi/PSDImporter/blob/master/com.bigxixi.PSDImporter/index.html)。
 
  ## Donation - 求打赏:
 如果您觉得本插件好用，欢迎打赏，感谢您的支持！  
