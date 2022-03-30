@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="js/CSInterface.js"></script>
+        <style type="text/css">
+            body{
+                background: rgb(43, 43, 43);
+            }
+            .textStyle{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .importBtn {
+                width: 150px;
+                height: 50px;
+                margin: 0 auto;
+                border: 3px dashed #39f;
+                transform: scale(1);
+                transition: all 0.1s cubic-bezier(0.3,0,0.7,1);
+            }
+            .importBtn:active{
+                transform: scale(0.9);
+            }
+            .importBtn:hover .text1{
+                color:rgb(0, 255, 34);
+            }
+            .text0{
+                font-size: 18px;
+                font-weight: bold;
+                color:rgb(42, 128, 198);
+            }
+            .text1{
+                color:#39f;
+            }
+            .text2{
+                font-size: 10px;
+                color:rgb(42, 128, 198);
+            }
+            .readme:hover{
+                color:rgb(0, 255, 34);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="textStyle text0">导入PSD并拆分画板</div>
+        <div class="textStyle importBtn">
+            <div class="textStyle text1">点击打开PSD文件</div>
+        </div>
+        <div class="textStyle text2">也许加载较慢，请耐心等待</div>
+        <div class="textStyle text2 readme"> - by Bigxixi - </div>
+        <script>
+            let csInterface = new CSInterface(),
+                text1 = document.body.querySelector(".text1"),
+                readme = document.body.querySelector(".readme");
+
+            // 生成通知
+            const genNote = (note)=>{
+                csInterface.evalScript("genNoteAlert("+note+")");
+            }
+            // 开启脚本写入
+            csInterface.evalScript("checkAccess()",(result)=>{
+                if(result == "0"){
+                    genNote("请勾选 「首选项」->「常规」->「允许脚本写入文件和访问网络」。如果您是 AE 2019 ，则在最下方「脚本和表达式」选项卡中");
+                    window.setTimeout(()=>{
+                        csInterface.evalScript("app.executeCommand(2359)");
+                    },2000)
+                }
+            });
+            // 处理windows文件路径中的"\"
+            const winSlash = (str)=>{
+                return str.replace(/\\/g,"\\\\");
+            }
+
+            let importBtn = document.querySelector('.importBtn'),
+                abGroup = [],
+                PSD = require('psd');
+
+            const handlePSD = ()=>{
+                csInterface.evalScript("getPSDPath()",(result)=>{
+                if(result != ""){
+                    text1.innerHTML = "加载中，请稍候...";
+                    text1.style = "color:red;";
+                    PSD.open(result).then((psd)=> {
+                        let psdInfo = psd.tree().children();
+                            console.log("psdInfo",psdInfo)
+                            if(psdInfo.length==0){
+                                csInterface.evalScript("importPSD('"+winSlash(result)+"');");
+                            }else{
+                                let abInfoGroup = [];
+                                for(let i=0;i<psdInfo.length;i++){
+                                    let checkAb = psdInfo[i].get('artboard');
+                                    console.log(checkAb);
+                                if(checkAb==undefined){
+                                        abInfoGroup.push("");
+                                }else{
+                                    let abName = psdInfo[i].get('name'),
+                                        abInfo = checkAb.export();
+                                    abInfoGroup.push({name:abName,coords:abInfo.coords});
+                                }
+                                }
+                                csInterface.evalScript("importPSDandSplit('"+winSlash(result)+"','" +JSON.stringify(abInfoGroup)+"');");
+                            }
+                        }).then(()=> {
+                            text1.innerHTML = "加载完成！";
+                            text1.style = "color:green;";
+                            window.setTimeout(()=>{
+                                text1.innerHTML = "点击打开PSD文件";
+                                text1.style = "color:#39f;";
+                            },500)
+                        });
+                    }
+                });
+
+            }
+        // 导入按钮 - 点击事件
+            importBtn.addEventListener('click', ()=> {
+                handlePSD();
+            });
+
+        // 项目主页
+            readme.addEventListener('click',()=>{
+                let url = "https://github.com/bigxixi/PSDImporter";
+                window.cep.util.openURLInDefaultBrowser(url);
+            })
+        </script>
+    </body>
+</html>

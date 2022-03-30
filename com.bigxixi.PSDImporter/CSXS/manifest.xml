@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest Version="6.0" ExtensionBundleId="com.bigxixi.PSDImporter"  ExtensionBundleVersion="1.0.0"
+		ExtensionBundleName="BX-PSDImporter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ExtensionList>
+		<Extension Id="com.bigxixi.PSDImporter" Version="1.0" />
+	</ExtensionList>
+	<ExecutionEnvironment>
+		<HostList>
+			<Host Name="AEFT" Version="[15.0,99.9]"/>
+            <Host Name="AEFX" Version="[15.0,99.9]"/>
+		</HostList>
+		<LocaleList>
+			<Locale Code="All" />
+		</LocaleList>
+		<RequiredRuntimeList>
+			<RequiredRuntime Name="CSXS" Version="6.0" />
+		</RequiredRuntimeList>
+	</ExecutionEnvironment>
+    
+	<DispatchInfoList>
+		<Extension Id="com.bigxixi.PSDImporter">
+			<DispatchInfo >
+				<Resources>
+                    <MainPath>./index.html</MainPath>
+					<ScriptPath>./jsx/helper.jsx</ScriptPath>
+					<CEFCommandLine>
+						<Parameter>--enable-nodejs</Parameter>
+					</CEFCommandLine>
+				</Resources>
+				<Lifecycle>
+					<AutoVisible>true</AutoVisible>
+					<StartOn></StartOn>
+                    <!-- 打开程序的时候自启动插件 -->
+				</Lifecycle>
+				<UI>
+					<Type>Panel</Type>
+					<Menu>PSD Importer</Menu>
+					<Geometry>
+						<Size>
+							<Height>100</Height>
+							<Width>150</Width>
+						</Size>
+						<MaxSize>
+							<Height>100</Height>
+							<Width>200</Width>
+						</MaxSize>
+						<MinSize>
+							<Height>100</Height>
+							<Width>150</Width>
+						</MinSize>
+					</Geometry>
+				</UI>
+			</DispatchInfo>
+		</Extension>
+	</DispatchInfoList>
+</ExtensionManifest>
